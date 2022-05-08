@@ -46,11 +46,11 @@ spotify[sapply(spotify, is.character)] = lapply(spotify[sapply(spotify, is.chara
 ```
 ## Introduction
 
-Spotify is one of the largest audio and media streaming service providers. Thus, the data collection for this company is vast. This allows for rich data sets that helps Spotify learn about their customers. This project takes a Spotify data set from the SpotifyR package. SpotifyR is an R wrapper which pulls track audio features and other information from Spotify's Web API. We attempt to tell a story through both supervised and unsupervised methodologies. In doing so, the goal is to [expand on this, won't be clear until you go through stuff]
+Spotify is one of the largest audio and media streaming service providers. This is in part due to their recommendation system, a feature of the platform that has consumers return regularly. Their data collection is a crucial component in their business model that allows for this well-implemented feature. Spotify allows their listeners to put together their own playlists while stamping each song wth a genre classification. Do the audio features that Spotify engineers on their own help describe a genre? This project takes Spotify data sets from the SpotifyR package to attempt to understand how songs are given a genre classificatiion. SpotifyR is an R wrapper which pulls track audio features and other information from Spotify’s Web API. We attempt to tell a story through various methodologies with random forests prevailing in telling this story of genre classification.
 
 ## Data 
 
-The data features are plentiful but ambiguous at first glance. Let's go through each feature and describe what's happening under the hood. Spotify has curated these unique features to help them assess information about the songs they recommend to listeners.
+The data features are plentiful but ambiguous at first glance. Let’s go through each feature and describe what’s happening under the hood. Spotify has curated these unique features to help them assess information about the songs they recommend to listeners.
 
 
 ### Features of the Data set (Categorical)
@@ -157,7 +157,7 @@ scale_fill_gradient2(
   )
 ```
 
-Above we observe the top artists that appear across all playlists regardless of genre. We see that all artists are classified in one type f genre except for David Guetta who appears 35 times in both pop and EDM playlists This puts David Guetta in third place for this data set. Rock is the most popular genre thanks to Queen and Guns N' Roses.
+Above we observe the top artists that appear across all playlists regardless of genre. We see that all artists are classified in one type of genre except for David Guetta who appears 35 times in both pop and EDM playlists. This technically puts David Guetta in third place for this data set. Rock is the most popular genre thanks to Queen and Guns N' Roses.
 
 ### Song Popularity
 ```{r echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
@@ -205,7 +205,7 @@ popular_genres %>%
 
 ```
 
-Taking the average of song popularity in each playlist genre, we see that EDM has the highest average. With David Guetta and Martin Garrix being two of the artists that appear in the most amount of playlists, this makes sense.
+Taking the average of song popularity in each playlist genre, we see that EDM has the highest average. With David Guetta and Martin Garrix being two of the artists that appear in the most amount of playlists, this makes sense. It is worth recalling that popularity is partially dictated both by how recent and how many times songs have been played.
 
 ### Popular Subgenres
 ```{r echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
@@ -226,7 +226,7 @@ popular_genres %>%
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 ```
 
-The most popular subgenres come from a mix of all 6 major genres. As we have observed, EDM is most popular. However, it does not appear in the most amount of popular subgenres in this data set.
+The most popular subgenres come from a mix of all 6 major genres. As we have observed, EDM is most popular. However, it does not appear in the most amount of popular subgenres in this data set. We attempt to cluster subgenres in the Modeling section.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 spotify_features = names(spotify)[12:23]
@@ -245,10 +245,10 @@ feature_density = spotify %>%
 feature_density
 ```
 
-Creating kernel density estimates show the probability distribution functions of each feature, and is essentially a smoothed over histogram. For each feature, there represents a distribution faceted by the genre. At the aggregate level, songs from the data set seem to have low confidence in acousticness, low probability they are instrumental, not likely to have been recorded with a live audience, and low speechiness. However, danceability, valence, loudness, and energy have higher levels of probability associated with them. For separating genres, we will attempt to utilize the three aforementioned features.
+Creating kernel density estimates show the probability distribution functions of each feature, and is essentially a smoothed over histogram. For each genre, there represents a distribution faceted by audio feature. At the aggregate level, songs from the data set seem to have low confidence in acousticness, low probability they are instrumental, not likely to have been recorded with a live audience, and low speechiness. However, danceability, valence, loudness, and energy have higher levels of probability associated with them.
 
 ## Modeling
-Next we incorporate several methodologies to attempt to classify the songs in the data set. We attempt tree models and then attempt to better explain it using PCA. Then, we compare all of them to see what story is told about the genre data set.
+This section incorporates several methodologies to attempt to classify the songs based on their features into genres. We utilize 'unsupervised' methodologies to help explain the relative distances of songs and their genre classifcations. Then, we turn to supervised learning methodologies that ultimately help us understand genres more than the aforementined methods do.
 
 ### Unsupervised Learning
 
@@ -256,7 +256,7 @@ We decided to implement k-means++ and ward agglomerative clustering to see if tr
 
 #### K-means++ clustering
 
-###### Choose k
+##### Choose k
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 
@@ -274,7 +274,7 @@ fviz_nbclust(X, kmeans, method = 'wss')
 
 In order to choose k, we utilized the "Elbow Plot" of Total Within Sum of Squares against values of k from 2 to 10. It can be seen that the "elbow" shape is observed around k=5 and decreases consistently beyond that point. Therefore, we decided to test values of k from 5 through 8 and choose the value with the highest Adjusted Rand Index. The Adjusted Rand Index evaluates whether dimension-reduced similarity cluster results are similar to one other. The Rand Index ranges from 0 to 1, where it equals to 0 when points are assigned into clusters randomly and it equals to 1 when the two cluster results are same.
 
-###### Adjusted Rand Index (ARI) for optimal k
+##### Adjusted Rand Index (ARI) for optimal k
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 
@@ -323,9 +323,9 @@ as.data.frame(clust6$center[6,]*sigma + mu) %>%
 
 ```
 
-Above we can see the average scores assigned to each attribute in each of the 6 clusters created by the k-means++ technique. The first cluster appears to have very a low loudness score and a very high key score with moderate energy and instrumentalness. The second cluster appears to be relatively the same except with lower loudness, and instrumentalness, and higher acousticness. Observing the following clusters, it is evident that all of them have negative loudness scores with high magnitudes, as well as, high key scores. It is unfortunate that all the clusters share such similar properties. This explains the low Adjusted Rand Index.
+Above we can see the average scores assigned to each attribute in each of the 6 clusters created by k-means++. The first cluster appears to have very a low loudness score and a very high key score with moderate energy and instrumentalness. The second cluster appears to be relatively the same except with lower loudness, and instrumentalness, and higher acousticness. Observing the following clusters, it is evident that all of them have negative loudness scores with high magnitudes, as well as, high key scores. It is unfortunate that all the clusters share such similar properties. This explains the low Adjusted Rand Index.
 
-###### Total Within and Between Sum of Squares
+##### Total Within and Between Sum of Squares
 
 The Total Within Sum of Squares and Between Sum of Squares is displayed below. It is clear that the Total Within Sum of Squares is much higher than the Between Sum of Squares, which is not ideal as typically more compact clusters have lower Total Within Sum of Squares and higher Between Sum of Squares.
 
@@ -340,7 +340,7 @@ cat('Total Between Sum of Squares:',clust6$betweenss, '\n')
 
 #### Clustering Visualization
 
-Several clustering comparison plots are displayed below of various attributes plotted against each other. The coloring of the data points is defined by genres. The plots on the left reflect actual clustering observed in the data, whereas the plots on the right reflect k-means++ clustering. It can be seen that there are not distinct genre clusters in the original data to begin with. Perhaps that is why kmeans++ performed so poorly in recovering these clusters. Overall, neither of the plots reflects comparable clustering.
+Several clustering comparison plots are displayed below of various attributes plotted against each other. The coloring of the data points is defined by genres. The plots on the left reflect actual clustering observed in the data, whereas the plots on the right reflect k-means++ clustering. It can be seen that there are not distinct genre clusters in the original data to begin with. Perhaps that is why kmeans++ performed so poorly in recovering these clusters. Overall, neither of the plots reflect comparable clustering.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 # Comparing danceability and energy how it relates to genres 
@@ -423,7 +423,9 @@ summary(factor(average))
 
 #### Ward Dendrogram 
 
-The dendrogram for the ward clustering is displayed below with different colored rectangles encapsulating the clusters formed. The dendrogram is relatively balanced, however the inital split on the right seems to divide further a lot more than the inital split on the left. 
+The dendrogram for the ward clustering is displayed below with different colored rectangles encapsulating the clusters formed. The dendrogram is relatively balanced, however the inital split on the right seems to divide further a lot more than the inital split on the left. The large splits observed in general may be attested to Spotify subgenres.
+
+
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 
@@ -457,20 +459,20 @@ cat('Rand Index for kmeans++ for k=6:', adj.rand.index(actual_genre,clust6$clust
 ```
 
 ### PCA Analysis
-We look at a principle component analysis for dimension reduction techniques to incorporate in our bake-off of supervised learning models. 
+We look at a principle component analysis for dimension reduction techniques. 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 ggcorrplot::ggcorrplot(cor(X), hc.order =TRUE)
 ```
 
-When observing correlations of features, we re-order the features according to hierarchical clustering. In the top left and bottom right regions of the hierarchical correlation plot, we can observe that acousticness has a strong, negative correlation with energy and loudness. Perhaps acoustic songs make listeners generally feel less energy, and they are also not associated with tracks that have higher dB (i.e. - loudness). Danceability and valence have a strong, positive correlation. Perhaps this correlation can be attributed to the idea that if songs make listeners feel happier, then they will want to dance more. Some relationships that do not seem intuitive is the negative correlation between danceability and tempo, where higher tempo may induce listeners to dance more.
+When observing correlations of features, we re-order the features according to hierarchical clustering. We can observe that acousticness has a strong, negative correlation with energy and loudness. Perhaps acoustic songs make listeners generally feel less energy, and they are also not associated with tracks that have higher dB (i.e. - loudness). Danceability and valence have a strong, positive correlation. Perhaps this correlation can be attributed to the idea that if songs make listeners feel happier, then they will want to dance more. Some relationships that do not seem intuitive is the negative correlation between danceability and tempo, where higher tempo may induce listeners to dance more. Either way, certain audio features normally exist with others while some generally do not appear together in great magnitude at all. Is it worth using this analysis component to tell stories of Spotify genres? This is answered below.
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 PCA_Spotify=prcomp(X, scale=TRUE, rank =3)
 summary(PCA_Spotify)
 ```
 
-There are several takeaways from observing the summary of the analysis. We see the standard deviation of the PCs is highest in PC1. The proportion of variance each PC accounts for from the original data is low and hovers between .09 and .1787, but this proportion is highest in PC1. Cumulatively, all three principle components account for a little more than two-thirds of the variation from the original data. Since the variation is not well preserved in the the three principle components, the CLUSTERING METHOD IS PREFERERD OVER THS ONE.
+There are several takeaways from observing the summary of the analysis. We see the standard deviation of the PCs is highest in PC1. The proportion of variance each PC accounts for from the original data is low and hovers between .09 and .1787, but this proportion is highest in PC1. Cumulatively, all three principle components account for a little more than two-thirds of the variation from the original data. The variation is not well preserved in the the three principle components. However, the dimension reduction helps tell a story of what audio features generally move together as discussed below.
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 knitr::kable(round(PCA_Spotify$rotation[,1:3],2),
@@ -479,7 +481,7 @@ knitr::kable(round(PCA_Spotify$rotation[,1:3],2),
                                booktabs = TRUE)
 ```
 
-Looking at the table, we notice similar loadings in PC1 as the correlation plot such as danceability and loudness as well as the opposing magnitudes of danceability and acousticness as well as danceability and loudness. The higher, positive magnitudes associated with each feature represents stronger positive correlations and higher, negative magnitudes associated with each feature represents stronger, negative correlations. PC2 shows danceability and valence moving in a similar direction as well.
+Looking at the table, we notice similar loadings in PC1 and the correlation plot. Examples include danceability and loudness and opposing magnitudes of danceability and acousticness. We observe low energy, liveness and loudness in the first principle component. In the second principle component we observe low danceability, valence, and speechiness.
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 
@@ -488,9 +490,9 @@ autoplot(PCA_Spotify, data = spotify, colour = 'playlist_genre', alpha = 0.6,
          loadings.label = TRUE, loadings.label.size = 3)
 ```
 
-When plotting the first two components against one another, we see that the PCA does not explain the variability well at all. The variability is seldom captured by the PCA as per the previous PCA summary table. Rock seems to push towards the upper left quadrant which maps slightly better towards PC2 than PC1.
+When plotting the first two components against one another, we see that the PCA does not explain the variability well at all. The variability is seldom captured by the PCA as per the previous PCA summary table. Rock seems to push towards the upper left quadrant which maps slightly better towards PC2 than PC1. So, rock appears to be a genre not suited for dancing.
 
-### Decision trees and random forests
+### Decision Trees and Random Forests
 
 One technique we have not utilized thus far for classification is decision trees and random forests.  Decision trees are a great method for classification because they are nonparametric and tend to work well out of the box.  However, using a singular decision tree makes it prone to overfitting and capturing random noise in the data.  To fix this we can use random forests, which aggregate predictions over a large number of decision trees.  Let's first try a singular tree for playlist genre classification:
 
@@ -504,9 +506,9 @@ tree1 = rpart(playlist_genre ~ danceability + energy + key + loudness + mode + s
 rpart.plot(tree1)
 ```
 
-Here in our dendrogram we can see several decision splits that make sense.  The first split it makes is based on speechiness, the density of spoken words in a song.  Right off the bat, it calls everything with speechiness >= 0.18 rap, which makes sense intuitively.  Rap songs tend to have the most spoken content.  It then classifies everything that has danceability < 0.55 as rock, which also makes sense--you can't really dance to Metallica like you would Latin or EDM.
+Here in our dendrogram we can see several decision splits that make sense.  The first split it makes is based on speechiness, the density of spoken words in a song.  The tree calls everything with speechiness >= 0.18 rap, which makes sense intuitively.  Rap songs tend to have the most spoken content.  It then classifies everything that has danceability < 0.55 as rock, which also makes sense--you can't really dance to Metallica like you would Latin or EDM.
 
-One problem we can see right off the bat, though, is that our decision tree does not even classify anything as Pop, even though our training data has 1344 Pop playlist songs.  This is a significant classification error by our model, so it's something we can improve on.  Let's look at our out-of-sample classification accuracy:
+One problem to note is that our decision tree does not classify anything as Pop. This is a significant classification error by our model, so it's something we can improve on.  Let's look at our out-of-sample classification accuracy:
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 y_hat_test = predict(tree1, newdata = spotify_test, type = "class")
@@ -515,7 +517,7 @@ table(y_hat_test, spotify_test$playlist_genre)
 sum(diag(table(y_hat_test, spotify_test$playlist_genre)))/2000
 ```
 
-Here we have a table of our predicted class vs. our true class, and a classification accuracy of 40.4 percent.  This is not great, so we'll now try a random forest to see if our predictions get better.  We can also draw a lot of valuable insights from variable importance plots with random forests.
+Here we have a table of our predicted class vs. our true class, and a classification accuracy of 39.5 percent.  This is not great, so we'll now try a random forest to see if our predictions get better.  We can also draw a lot of valuable insights from variable importance plots with random forests.
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 forest1 = randomForest(playlist_genre ~ danceability + energy + key + loudness + mode + speechiness + acousticness + instrumentalness + liveness + valence + tempo + duration_ms, data = spotify_train, importance = TRUE)
@@ -565,13 +567,13 @@ table(y_hat_test, spotify_test$playlist_genre)
 sum(diag(table(y_hat_test, spotify_test$playlist_genre)))/2000
 ```
 
-Here we get a very tiny improvement in performance for our gradient-boosted tree (.1 percent) over our random forest.  This might tell us something important: that tempo is more informative for classification than we previously thought.
+Here we get a very slight drop in performance for our gradient-boosted tree (.4 percent) over our random forest.  This might tell us something important: that tempo is not very informative for classification after all.
 
-### Predicting with song titles
+### Bonus: Predicting with Song Titles
 
 One of our group members was consumed with the question: do certain genres use certain words more frequently in song names, and can we classify genre with nothing but song and album titles?
 
-The tool we used to answer this question was Multinomial Naive Bayes, which is essentially regression in reverse: it involves predicting features based on a class label.  We started with preprocessing: we took all of the songs in our dataset and engineered a column that combined song and album name, all lowercase and without special characters.  We then fed our list of song names and word strings into the "text2map" document-term-builder tool to build a sparse matrix that one-hot-encoded the presence of certain words in a song and album title.  We then trained our data on a subset of the genre labels and the document-term-matrix with Multinomial Naive Bayes, and then saw how accurately we could predict genres.  Let's see how we did:
+The tool we used to answer this question was Multinomial Naive Bayes, which is essentially 'regression in reverse'. Naive Bayes involves predicting features based on a class label.  We started with preprocessing: we took all of the songs in our dataset and engineered a column that combined song and album name, all lowercase and without special characters.  We then fed our list of song names and word strings into the "text2map" document-term-builder tool to build a sparse matrix that one-hot-encoded the presence of certain words in a song and album title.  We then trained our data on a subset of the genre labels and the document-term-matrix with Multinomial Naive Bayes, and then saw how accurately we could predict genres.  Let's see how we did:
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 naiveprep = spotify %>%
@@ -605,4 +607,16 @@ sum(diag(table(y_test, y_test_pred)))/length(y_test)
 
 ```
 
-Looks like we can predict with 43.7 percent accuracy, which is not too bad, considering we were training only on the presence of certain words in our song and album titles.  One of the shortcomings of this approach, though, is that artists' names are often in song titles, and this provides artificial advantage given that most artists stick only to certain genres.
+Looks like we can predict with 43.4 percent accuracy, which is not too bad, considering we were training only on the presence of certain words in our song and album titles.  One of the shortcomings of this approach, though, is that artists' names are often in song titles, and this provides artificial advantage given that most artists stick only to certain genres.
+
+## Conclusion
+Our supervised learning method proved to be the most helpful in classifying genres with Spotify's playlist. Although clustering allowed for two-dimensional interpretability among audio features, it showed it was realtively inadqueate and insufficoent in classifying genres. Our PCA analysis did not preserve enough variation nor did the cumulative variation of all three principle components. The random forest model provided the highest classification accuracy with gradient-boosted trees being a close second. Thus, generally speaking, there are some takeaways from how Spotify classifies songs into genres based on their audio features.
+
+**Rap** is primarily detected by speech.
+**EDM** is popular with high tempo and danceability.
+If there's one genre to dance to, it's **Latin**.
+**Rock** is hard to dance to, at least relative to **EDM** and **Latin** genres.
+**Pop** is difficult to classify as it doesn't have unique features (no offense).
+Although a favorite genre of the group, **R&B** had no significant, clear characterstic qualities.
+
+The two most important features to classify genres would be **danceability** and **speechiness**.
