@@ -343,8 +343,8 @@ rock
 
 Above we observe the top artists that appear across all playlists
 regardless of genre. We see that all artists are classified in one type
-f genre except for David Guetta who appears 35 times in both pop and EDM
-playlists This puts David Guetta in third place for this data set. Rock
+of genre except for David Guetta who appears 35 times in both pop and EDM
+playlists. This technically puts David Guetta in third place for this data set. Rock
 is the most popular genre thanks to Queen and Guns N’ Roses.
 
 ### Song Popularity
@@ -364,7 +364,8 @@ Tusa (Carol G).
 Taking the average of song popularity in each playlist genre, we see
 that EDM has the highest average. With David Guetta and Martin Garrix
 being two of the artists that appear in the most amount of playlists,
-this makes sense.
+this makes sense. It is worth recalling popularity is partially dictated both by 
+how recent and how many times songs have been played.
 
 ### Popular Subgenres
 
@@ -372,23 +373,23 @@ this makes sense.
 
 The most popular subgenres come from a mix of all 6 major genres. As we
 have observed, EDM is most popular. However, it does not appear in the
-most amount of popular subgenres in this data set.
+most amount of popular subgenres in this data set. We attempt to cluster
+subgenres in the **Modeling** section.
 
 ![](rmarkdownfinal_files/figure-markdown_strict/unnamed-chunk-9-1.png)
 
 Creating kernel density estimates show the probability distribution
 functions of each feature, and is essentially a smoothed over histogram.
-For each feature, there represents a distribution faceted by the genre.
+For each genre, there represents a distribution faceted by audio feature.
 At the aggregate level, songs from the data set seem to have low
 confidence in acousticness, low probability they are instrumental, not
 likely to have been recorded with a live audience, and low speechiness.
 However, danceability, valence, loudness, and energy have higher levels
-of probability associated with them. For separating genres, we will
-attempt to utilize the three aforementioned features.
+of probability associated with them.
 
 ## Modeling
 
-Next we incorporate several methodologies to attempt to classify the
+This section incorporates several methodologies to attempt to classify the
 songs in the data set. We attempt tree models and then attempt to better
 explain it using PCA. Then, we compare all of them to see what story is
 told about the genre data set.
