@@ -3,13 +3,16 @@
 ## Introduction
 
 Spotify is one of the largest audio and media streaming service
-providers. Thus, the data collection for this company is vast. This
-allows for rich data sets that helps Spotify learn about their
-customers. This project takes a Spotify data set from the SpotifyR
-package. SpotifyR is an R wrapper which pulls track audio features and
+providers. This is in part due to their recommendation system, a feature of the platform
+that has consumers return regularly. Their data collection is a crucial 
+component in their business model that allows for this well-implemented feature. Spotify allows
+their listeners to put together their own playlists while stamping each song wth a genre classification.
+Do the audio features that Spotify engineers on their own help describe a genre?
+This project takes Spotify data sets from the SpotifyR
+package to attempt to understand how songs are given a genre classificatiion.
+SpotifyR is an R wrapper which pulls track audio features and
 other information from Spotify’s Web API. We attempt to tell a story
-through both supervised and unsupervised methodologies. In doing so, the
-goal is to \[expand on this, won’t be clear until you go through stuff\]
+through various methodologies with random forests prevailing in telling this story of genre classification.
 
 ## Data
 
