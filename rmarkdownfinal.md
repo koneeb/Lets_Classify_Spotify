@@ -884,8 +884,7 @@ has danceability &lt; 0.55 as rock, which also makes sense–you can’t
 really dance to Metallica like you would Latin or EDM.
 
 One problem we can see right off the bat, though, is that our decision
-tree does not even classify anything as Pop, even though our training
-data has 1344 Pop playlist songs. This is a significant classification
+tree does not even classify anything as Pop. This is a significant classification
 error by our model, so it’s something we can improve on. Let’s look at
 our out-of-sample classification accuracy:
 
@@ -901,7 +900,7 @@ our out-of-sample classification accuracy:
     ## [1] 0.3955
 
 Here we have a table of our predicted class vs. our true class, and a
-classification accuracy of 40.4 percent. This is not great, so we’ll now
+classification accuracy of 39.5 percent. This is not great, so we’ll now
 try a random forest to see if our predictions get better. We can also
 draw a lot of valuable insights from variable importance plots with
 random forests.
@@ -986,10 +985,10 @@ Let’s see if our gradient-boosted tree was more accurate:
 
     ## [1] 0.521
 
-Here we get a very tiny improvement in performance for our
-gradient-boosted tree (.1 percent) over our random forest. This might
-tell us something important: that tempo is more informative for
-classification than we previously thought.
+Here we get a very slight drop in performance for our
+gradient-boosted tree (.4 percent) over our random forest. This might
+tell us something important: that tempo is not very informative for
+classification after all.
 
 ### Predicting with song titles
 
@@ -1020,7 +1019,7 @@ predict genres. Let’s see how we did:
 
     ## [1] 0.4345
 
-Looks like we can predict with 43.7 percent accuracy, which is not too
+Looks like we can predict with 43.4 percent accuracy, which is not too
 bad, considering we were training only on the presence of certain words
 in our song and album titles. One of the shortcomings of this approach,
 though, is that artists’ names are often in song titles, and this
@@ -1028,7 +1027,7 @@ provides artificial advantage given that most artists stick only to
 certain genres.
 
 ## Conclusion
-Our supervised learning method proved to be the most helpful in classifying genres with Spotify's playlist. Although clustering allowed for two-dimensional interpretability among engineering features, it showed it was inadqueate and insufficoent in helping classify genres. Our PCA analysis did not preserve enough variation nor did the cumulative variatioin of all three components. The random forest model provided the highest classification accuracy with XGBoost being a close second. Thus, generally speaking, there are general takeaways from how Spotify classifies genres based on their features.
+Our supervised learning method proved to be the most helpful in classifying genres with Spotify's playlist. Although clustering allowed for two-dimensional interpretability among engineering features, it showed it was inadqueate and insufficoent in helping classify genres. Our PCA analysis did not preserve enough variation nor did the cumulative variatioin of all three components. The random forest model provided the highest classification accuracy with gradient-boosted trees being a close second. Thus, generally speaking, there are general takeaways from how Spotify classifies genres based on their features.
 
 **Rap** is primarily detected by speech.
 **EDM** is popular with high tempo and danceability.
