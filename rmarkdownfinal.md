@@ -881,13 +881,13 @@ classification:
 
 Here in our dendrogram we can see several decision splits that make
 sense. The first split it makes is based on speechiness, the density of
-spoken words in a song. Right off the bat, it calls everything with
+spoken words in a song. The tree calls everything with
 speechiness &gt;= 0.18 rap, which makes sense intuitively. Rap songs
 tend to have the most spoken content. It then classifies everything that
 has danceability &lt; 0.55 as rock, which also makes sense–you can’t
 really dance to Metallica like you would Latin or EDM.
 
-One problem we can see right off the bat, though, is that our decision
+One problem to note is that our decision
 tree does not even classify anything as Pop. This is a significant classification
 error by our model, so it’s something we can improve on. Let’s look at
 our out-of-sample classification accuracy:
@@ -994,14 +994,14 @@ gradient-boosted tree (.4 percent) over our random forest. This might
 tell us something important: that tempo is not very informative for
 classification after all.
 
-### Predicting with song titles
+### Bonus: Predicting with Song Titles
 
 One of our group members was consumed with the question: do certain
 genres use certain words more frequently in song names, and can we
 classify genre with nothing but song and album titles?
 
 The tool we used to answer this question was Multinomial Naive Bayes,
-which is essentially regression in reverse: it involves predicting
+which is essentially 'regression in reverse.' Naive bayes involves predicting
 features based on a class label. We started with preprocessing: we took
 all of the songs in our dataset and engineered a column that combined
 song and album name, all lowercase and without special characters. We
@@ -1031,12 +1031,13 @@ provides artificial advantage given that most artists stick only to
 certain genres.
 
 ## Conclusion
-Our supervised learning method proved to be the most helpful in classifying genres with Spotify's playlist. Although clustering allowed for two-dimensional interpretability among engineering features, it showed it was inadqueate and insufficoent in helping classify genres. Our PCA analysis did not preserve enough variation nor did the cumulative variatioin of all three components. The random forest model provided the highest classification accuracy with gradient-boosted trees being a close second. Thus, generally speaking, there are general takeaways from how Spotify classifies genres based on their features.
+Our supervised learning method proved to be the most helpful in classifying genres with Spotify's playlist. Although clustering allowed for two-dimensional interpretability among audio features, it showed it was realtively inadqueate and insufficoent in classifying genres. Our PCA analysis did not preserve enough variation nor did the cumulative variation of all three components. The random forest model provided the highest classification accuracy with gradient-boosted trees being a close second. Thus, generally speaking, there are some takeaways from how Spotify classifies songs into genres based on their audio features.
 
 **Rap** is primarily detected by speech.
 **EDM** is popular with high tempo and danceability.
 If there's one genre to dance to, it's **Latin**.
 **Rock** is hard to dance to, at least relative to **EDM** and **Latin** genres.
+**Pop** is difficult to classify as it doesn't have unique features (no offense).
 Although a favorite genre of the group, **R&B** had no significant, clear characterstic qualities.
 
 The two most important features to classify genres would be **danceability** and **speechiness**.
