@@ -364,7 +364,7 @@ Tusa (Carol G).
 Taking the average of song popularity in each playlist genre, we see
 that EDM has the highest average. With David Guetta and Martin Garrix
 being two of the artists that appear in the most amount of playlists,
-this makes sense. It is worth recalling popularity is partially dictated both by 
+this makes sense. It is worth recalling that popularity is partially dictated both by 
 how recent and how many times songs have been played.
 
 ### Popular Subgenres
@@ -390,9 +390,10 @@ of probability associated with them.
 ## Modeling
 
 This section incorporates several methodologies to attempt to classify the
-songs in the data set. We attempt tree models and then attempt to better
-explain it using PCA. Then, we compare all of them to see what story is
-told about the genre data set.
+songs based on their features into genres. We utilize 'unsupervised' methodologies
+to help explain the relative distances of songs and their genre classifcations. 
+Then, we turn to supervised learning methodologies that ultimately help us understand
+genres more than the aforementined methods prove to.
 
 ### Unsupervised Learning
 
@@ -406,7 +407,7 @@ details of the two methods are discussed below.
 
 #### K-means++ clustering
 
-###### Choose k
+##### Choose k
 
 ![](rmarkdownfinal_files/figure-markdown_strict/unnamed-chunk-10-1.png)
 
@@ -420,7 +421,7 @@ results are similar to one other. The Rand Index ranges from 0 to 1,
 where it equals to 0 when points are assigned into clusters randomly and
 it equals to 1 when the two cluster results are same.
 
-###### Adjusted Rand Index (ARI) for optimal k
+##### Adjusted Rand Index (ARI) for optimal k
 
     ## [1] "Adjusted Rand Index for genre"
 
@@ -525,7 +526,7 @@ results for k-means++.
     ## duration_ms                            218414.58
 
 Above we can see the average scores assigned to each attribute in each
-of the 6 clusters created by the k-means++ technique. The first cluster
+of the 6 clusters created by k-means++. The first cluster
 appears to have very a low loudness score and a very high key score with
 moderate energy and instrumentalness. The second cluster appears to be
 relatively the same except with lower loudness, and instrumentalness,
@@ -534,7 +535,7 @@ that all of them have negative loudness scores with high magnitudes, as
 well as, high key scores. It is unfortunate that all the clusters share
 such similar properties. This explains the low Adjusted Rand Index.
 
-###### Total Within and Between Sum of Squares
+##### Total Within and Between Sum of Squares
 
 The Total Within Sum of Squares and Between Sum of Squares is displayed
 below. It is clear that the Total Within Sum of Squares is much higher
@@ -555,7 +556,7 @@ observed in the data, whereas the plots on the right reflect k-means++
 clustering. It can be seen that there are not distinct genre clusters in
 the original data to begin with. Perhaps that is why kmeans++ performed
 so poorly in recovering these clusters. Overall, neither of the plots
-reflects comparable clustering.
+reflect comparable clustering.
 
 ![](rmarkdownfinal_files/figure-markdown_strict/unnamed-chunk-14-1.png)![](rmarkdownfinal_files/figure-markdown_strict/unnamed-chunk-14-2.png)![](rmarkdownfinal_files/figure-markdown_strict/unnamed-chunk-14-3.png)![](rmarkdownfinal_files/figure-markdown_strict/unnamed-chunk-14-4.png)![](rmarkdownfinal_files/figure-markdown_strict/unnamed-chunk-14-5.png)![](rmarkdownfinal_files/figure-markdown_strict/unnamed-chunk-14-6.png)![](rmarkdownfinal_files/figure-markdown_strict/unnamed-chunk-14-7.png)
 
@@ -601,6 +602,7 @@ The dendrogram for the ward clustering is displayed below with different
 colored rectangles encapsulating the clusters formed. The dendrogram is
 relatively balanced, however the inital split on the right seems to
 divide further a lot more than the inital split on the left.
+The large splits observed in general may be attested to Spotify subgenres.
 
 ![](rmarkdownfinal_files/figure-markdown_strict/unnamed-chunk-17-1.png)
 
@@ -626,13 +628,12 @@ Rand Index.
 ### PCA Analysis
 
 We look at a principle component analysis for dimension reduction
-techniques to incorporate in our bake-off of supervised learning models.
+techniques.
 
 ![](rmarkdownfinal_files/figure-markdown_strict/unnamed-chunk-20-1.png)
 
 When observing correlations of features, we re-order the features
-according to hierarchical clustering. In the top left and bottom right
-regions of the hierarchical correlation plot, we can observe that
+according to hierarchical clustering. We can observe that
 acousticness has a strong, negative correlation with energy and
 loudness. Perhaps acoustic songs make listeners generally feel less
 energy, and they are also not associated with tracks that have higher dB
@@ -641,7 +642,9 @@ correlation. Perhaps this correlation can be attributed to the idea that
 if songs make listeners feel happier, then they will want to dance more.
 Some relationships that do not seem intuitive is the negative
 correlation between danceability and tempo, where higher tempo may
-induce listeners to dance more.
+induce listeners to dance more. Either way, certain audio features normally
+exist with others while some generally do not appear together in great magnitude at all.
+Is it worth using this analysis component to tell stories of Spotify genres? This is answered below.
 
     ## Importance of first k=3 (out of 12) components:
     ##                           PC1    PC2     PC3
@@ -654,9 +657,9 @@ We see the standard deviation of the PCs is highest in PC1. The
 proportion of variance each PC accounts for from the original data is
 low and hovers between .09 and .1787, but this proportion is highest in
 PC1. Cumulatively, all three principle components account for a little
-more than two-thirds of the variation from the original data. Since the
-variation is not well preserved in the the three principle components,
-the CLUSTERING METHOD IS PREFERERD OVER THS ONE.
+more than two-thirds of the variation from the original data. The
+variation is not well preserved in the the three principle components. However, the dimensin reduction
+helps tell a story of what audio features generally move together as discussed below. 
 
 <table>
 <caption>
@@ -849,14 +852,11 @@ duration\_ms
 </tbody>
 </table>
 
-Looking at the table, we notice similar loadings in PC1 as the
-correlation plot such as danceability and loudness as well as the
-opposing magnitudes of danceability and acousticness as well as
-danceability and loudness. The higher, positive magnitudes associated
-with each feature represents stronger positive correlations and higher,
-negative magnitudes associated with each feature represents stronger,
-negative correlations. PC2 shows danceability and valence moving in a
-similar direction as well.
+Looking at the table, we notice similar loadings in PC1 and the
+correlation plot. Examples include danceability and loudness and
+opposing magnitudes of danceability and acousticness. We observe low energy, liveness
+and loudness in the first principle component. In the second principle component we oobserve
+low danceability, valence, and speechiness.
 
 ![](rmarkdownfinal_files/figure-markdown_strict/unnamed-chunk-23-1.png)
 
@@ -864,9 +864,9 @@ When plotting the first two components against one another, we see that
 the PCA does not explain the variability well at all. The variability is
 seldom captured by the PCA as per the previous PCA summary table. Rock
 seems to push towards the upper left quadrant which maps slightly better
-towards PC2 than PC1.
+towards PC2 than PC1. So, rock appears to be a genre not suited for dancing.
 
-### Decision trees and random forests
+### Decision Trees and Random Forests
 
 One technique we have not utilized thus far for classification is
 decision trees and random forests. Decision trees are a great method for
