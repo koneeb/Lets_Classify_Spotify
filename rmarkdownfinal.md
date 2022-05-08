@@ -1026,3 +1026,14 @@ in our song and album titles. One of the shortcomings of this approach,
 though, is that artists’ names are often in song titles, and this
 provides artificial advantage given that most artists stick only to
 certain genres.
+
+## Conclusion
+Our supervised learning method proved to be the most helpful in classifying genres with Spotify's playlist. Although clustering allowed for two-dimensional interpretability among engineering features, it showed it was inadqueate and insufficoent in helping classify genres. Our PCA analysis did not preserve enough variation nor did the cumulative variatioin of all three components. The random forest model provided the highest classification accuracy with XGBoost being a close second. Thus, generally speaking, there are general takeaways from how Spotify classifies genres based on their features.
+
+**Rap** is primarily detected by speech.
+**EDM** is popular with high tempo and danceability.
+If there's one genre to dance to, it's **Latin**.
+**Rock** is hard to dance to, at least relative to **EDM** and **Latin** genres.
+Although a favorite genre of the group, **R&B** had no significant, clear characterstic qualities.
+
+The two most important features to classify genres would be **danceability** and **speechiness**.
