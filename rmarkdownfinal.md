@@ -654,6 +654,197 @@ more than two-thirds of the variation from the original data. Since the
 variation is not well preserved in the the three principle components,
 the CLUSTERING METHOD IS PREFERERD OVER THS ONE.
 
+<table>
+<caption>
+Principle Components
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+PC1
+</th>
+<th style="text-align:right;">
+PC2
+</th>
+<th style="text-align:right;">
+PC3
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+danceability
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-0.59
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+energy
+</td>
+<td style="text-align:right;">
+-0.61
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+key
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+<td style="text-align:right;">
+-0.10
+</td>
+<td style="text-align:right;">
+0.64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+loudness
+</td>
+<td style="text-align:right;">
+-0.55
+</td>
+<td style="text-align:right;">
+-0.10
+</td>
+<td style="text-align:right;">
+-0.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mode
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+-0.63
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+speechiness
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-0.37
+</td>
+<td style="text-align:right;">
+-0.03
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+acousticness
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+-0.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+instrumentalness
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.31
+</td>
+<td style="text-align:right;">
+0.29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+liveness
+</td>
+<td style="text-align:right;">
+-0.17
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+valence
+</td>
+<td style="text-align:right;">
+-0.10
+</td>
+<td style="text-align:right;">
+-0.52
+</td>
+<td style="text-align:right;">
+-0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tempo
+</td>
+<td style="text-align:right;">
+-0.18
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+-0.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+duration\_ms
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+</tr>
+</tbody>
+</table>
+
 Looking at the table, we notice similar loadings in PC1 as the
 correlation plot such as danceability and loudness as well as the
 opposing magnitudes of danceability and acousticness as well as
@@ -762,478 +953,27 @@ trees, and a shrinkage factor of .05.
 
     ## Distribution not specified, assuming multinomial ...
 
-    ## Warning: Setting `distribution = "multinomial"` is ill-advised as it is
-    ## currently broken. It exists only for backwards compatibility. Use at your own
-    ## risk.
-
 ![](rmarkdownfinal_files/figure-markdown_strict/unnamed-chunk-30-1.png)
 
-<div id="rrkjqpyhlr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
-}
-
-#rrkjqpyhlr .gt_table {
-  display: table;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: none;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#rrkjqpyhlr .gt_heading {
-  background-color: #FFFFFF;
-  text-align: left;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#rrkjqpyhlr .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#rrkjqpyhlr .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#rrkjqpyhlr .gt_bottom_border {
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rrkjqpyhlr .gt_col_headings {
-  border-top-style: none;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: none;
-  border-bottom-width: 1px;
-  border-bottom-color: #334422;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#rrkjqpyhlr .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 12px;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#rrkjqpyhlr .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 12px;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#rrkjqpyhlr .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#rrkjqpyhlr .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#rrkjqpyhlr .gt_column_spanner {
-  border-bottom-style: none;
-  border-bottom-width: 1px;
-  border-bottom-color: #334422;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#rrkjqpyhlr .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#rrkjqpyhlr .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#rrkjqpyhlr .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#rrkjqpyhlr .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#rrkjqpyhlr .gt_row {
-  padding-top: 7px;
-  padding-bottom: 7px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#rrkjqpyhlr .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rrkjqpyhlr .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#rrkjqpyhlr .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#rrkjqpyhlr .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rrkjqpyhlr .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#rrkjqpyhlr .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#rrkjqpyhlr .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rrkjqpyhlr .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rrkjqpyhlr .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#rrkjqpyhlr .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#rrkjqpyhlr .gt_table_body {
-  border-top-style: none;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #FFFFFF;
-}
-
-#rrkjqpyhlr .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#rrkjqpyhlr .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rrkjqpyhlr .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#rrkjqpyhlr .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rrkjqpyhlr .gt_left {
-  text-align: left;
-}
-
-#rrkjqpyhlr .gt_center {
-  text-align: center;
-}
-
-#rrkjqpyhlr .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#rrkjqpyhlr .gt_font_normal {
-  font-weight: normal;
-}
-
-#rrkjqpyhlr .gt_font_bold {
-  font-weight: bold;
-}
-
-#rrkjqpyhlr .gt_font_italic {
-  font-style: italic;
-}
-
-#rrkjqpyhlr .gt_super {
-  font-size: 65%;
-}
-
-#rrkjqpyhlr .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
-#rrkjqpyhlr .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 75%;
-  vertical-align: 0.4em;
-}
-
-#rrkjqpyhlr .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#rrkjqpyhlr .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
-}
-
-#rrkjqpyhlr .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
-}
-
-#rrkjqpyhlr .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
-}
-</style>
-<table class="gt_table">
-  <thead class="gt_header">
-    <tr>
-      <th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="font-family: &#39;Libre Franklin&#39;; font-weight: 800;">Variable name and relative influence</th>
-    </tr>
-    
-  </thead>
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="color: #A9A9A9; font-family: &#39;Source Sans Pro&#39;; text-transform: uppercase;">var</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="color: #A9A9A9; font-family: &#39;Source Sans Pro&#39;; text-transform: uppercase;">rel.inf</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">tempo</td>
-<td class="gt_row gt_right" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">17.0842327</td></tr>
-    <tr><td class="gt_row gt_left" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">speechiness</td>
-<td class="gt_row gt_right" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">15.2816184</td></tr>
-    <tr><td class="gt_row gt_left" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">danceability</td>
-<td class="gt_row gt_right" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">12.1647104</td></tr>
-    <tr><td class="gt_row gt_left" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">valence</td>
-<td class="gt_row gt_right" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">8.8381346</td></tr>
-    <tr><td class="gt_row gt_left" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">duration_ms</td>
-<td class="gt_row gt_right" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">8.7847877</td></tr>
-    <tr><td class="gt_row gt_left" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">energy</td>
-<td class="gt_row gt_right" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">8.6240343</td></tr>
-    <tr><td class="gt_row gt_left" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">instrumentalness</td>
-<td class="gt_row gt_right" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">8.2735075</td></tr>
-    <tr><td class="gt_row gt_left" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">acousticness</td>
-<td class="gt_row gt_right" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">7.8049217</td></tr>
-    <tr><td class="gt_row gt_left" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">loudness</td>
-<td class="gt_row gt_right" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">7.6482716</td></tr>
-    <tr><td class="gt_row gt_left" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">liveness</td>
-<td class="gt_row gt_right" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">3.6032225</td></tr>
-    <tr><td class="gt_row gt_left" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">key</td>
-<td class="gt_row gt_right" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">1.3780853</td></tr>
-    <tr><td class="gt_row gt_left" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">mode</td>
-<td class="gt_row gt_right" style="font-family: &#39;Source Sans Pro&#39;; font-weight: 400;">0.5144732</td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
+    ##                               var    rel.inf
+    ## tempo                       tempo 17.0842327
+    ## speechiness           speechiness 15.2816184
+    ## danceability         danceability 12.1647104
+    ## valence                   valence  8.8381346
+    ## duration_ms           duration_ms  8.7847877
+    ## energy                     energy  8.6240343
+    ## instrumentalness instrumentalness  8.2735075
+    ## acousticness         acousticness  7.8049217
+    ## loudness                 loudness  7.6482716
+    ## liveness                 liveness  3.6032225
+    ## key                           key  1.3780853
+    ## mode                         mode  0.5144732
 
 Our gradient-boosted tree came up with slightly different results for
 what influences classification accuracy than our random forest did.
 Speechiness and danceability are still on top, but we see now that tempo
 is the most influential variable in improving classification accuracy.
 Let’s see if our gradient-boosted tree was more accurate:
-
-    ## Using 500 trees...
 
     ##           
     ## y_hat_test edm latin pop r&b rap rock
@@ -1271,14 +1011,14 @@ predict genres. Let’s see how we did:
 
     ##        y_test_pred
     ## y_test  edm latin pop r&b rap rock
-    ##   edm   200     7  73  44  46   29
-    ##   latin  29   164  40  29  40   28
-    ##   pop    70    25  93  62  47   46
-    ##   r&b    35    13  65 106  36   33
-    ##   rap    35    50  35  61 147   32
-    ##   rock   19     5  40  32  18  166
+    ##   edm   181    11  65  50  37   25
+    ##   latin  34   153  43  27  29   21
+    ##   pop    72    28  94  63  41   55
+    ##   r&b    29    11  56 117  49   41
+    ##   rap    31    52  40  57 159   35
+    ##   rock   20    10  48  34  17  165
 
-    ## [1] 0.438
+    ## [1] 0.4345
 
 Looks like we can predict with 43.7 percent accuracy, which is not too
 bad, considering we were training only on the presence of certain words
